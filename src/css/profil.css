@@ -1,0 +1,64 @@
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+    margin-left: 70%;
+    margin-top: 5%;
+}
+
+.title {
+    color: grey;
+    font-size: 18px;
+}
+
+
+/* On mouse-over, add a deeper shadow */
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+
+/* Add some padding inside the card container */
+
+.container {
+    padding: 2px 16px;
+}
+
+.about-me {
+    margin-top: 5%;
+    margin-left: 3%;
+    width: 50%;
+}
+
+.about-me .about {
+    border-top-style: ridge;
+}
+
+.about-me .about-text {
+    margin-left: 10%;
+    margin-bottom: 5%;
+}
+
+.card img {
+    width: 100%;
+}
+
+.images {
+    margin-left: 10%;
+}
+
+.images img {
+    margin-left: 2%;
+    width: 20%;
+}
+
+.images img:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.click {
+    border-style: ridge;
+    border-color: tomato;
+}

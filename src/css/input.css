@@ -1,0 +1,11 @@
+.input-border input,
+.input-border textarea {
+    width: 98% !important;
+    margin-left: 1% !important;
+    margin-top: 2% !important;
+}
+
+.input-border {
+    border-radius: 8px;
+    width: 70% !important;
+}

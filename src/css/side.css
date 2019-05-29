@@ -1,0 +1,74 @@
+.sidenavig {
+    position: fixed;
+    width: 10px;
+    height: 100%;
+    z-index: 1;
+    padding-top: 50px;
+    overflow-x: hidden;
+    background-color: black;
+    transition: 3s;
+}
+
+.sidenavig-top {
+    position: absolute;
+    width: 10px;
+    height: 100%;
+    z-index: 1;
+    padding-top: 50px;
+    overflow-x: hidden;
+    background-color: black;
+    transition-property: width;
+    transition-duration: 3s;
+}
+
+.sidenavig .navig-link {
+    padding: 8px 8px 8px 30px;
+    text-decoration: none;
+    font-size: 25px;
+    display: block;
+    color: slategray;
+}
+
+.sidenavig .navig-link:hover {
+    color: white;
+}
+
+.bar1,
+.bar3 {
+    width: 12px;
+    height: 2px;
+    background-color: white;
+    margin: 5px 0;
+    transition: 3s;
+}
+
+.left .bar1 {
+    transform: rotate(45deg) translate(0px, 0px);
+}
+
+.left .bar3 {
+    transform: rotate(-45deg) translate(0px, 0px);
+}
+
+.right .bar1 {
+    transform: rotate(-45deg) translate(0px, 0px);
+}
+
+.right .bar3 {
+    transform: rotate(45deg) translate(0px, 0px);
+}
+
+.arrow {
+    margin-top: 35%;
+    display: inline-block;
+    cursor: pointer;
+    transition: 3s;
+}
+
+.arrow.left {
+    margin-left: 70%;
+}
+
+.arrow.right {
+    margin-left: 20%;
+}
