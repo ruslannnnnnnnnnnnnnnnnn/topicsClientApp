@@ -22,7 +22,6 @@ class Search extends React.Component {
         }).bind(this);
 
         this.checkboxs = this.props.checkboxs;
-
     }
   
     click(option, callBack) {
@@ -31,8 +30,6 @@ class Search extends React.Component {
         var textSearch = document.getElementById("text-search").value;
         var thisTopic = this;
         
-        console.log({textSearch, isToks: this.isToks, isClick: this.isClick});
-
         if (textSearch != "" && this.isToks && this.isClick) {
             this.toks = textSearch.split(/ +/);      
             this.isToks = false;
@@ -52,12 +49,13 @@ class Search extends React.Component {
 
     render() { 	
         var This = this;
-	  return (
-        <div className="topnav">
-            <input id="text-search" type="text" placeholder="Search.." onChange={() => This.isToks = true}/>
-            <input id="search-button" type="submit" value="Search" onClick={() => {This.isClick = true; This.click(null, This.callBack);}}/>
-            {this.checkboxs.map(function(item, i) {
-                return  (<div className="checkbox" key={"checkbox" + i}>
+	    return (
+            <div className="topnav">
+                <input id="text-search" type="text" placeholder="Search.." onChange={() => This.isToks = true}/>
+                <input id="search-button" type="submit" value="Поиск" onClick={() => {This.isClick = true; This.click(null, This.callBack);}}/>
+                {this.checkboxs.map(function(item, i) {
+                    return  (
+                        <div className="checkbox" key={"checkbox" + i}>
                             <input type="checkbox" id={"searchCheckbox" + i} checked={item.default} onChange={() => { 
                                     This.isToks = true;
                                     This.isClick = true;                                    
@@ -65,11 +63,13 @@ class Search extends React.Component {
                                     This.checkboxs[i].default = !This.checkboxs[i].default;
                                     This.setState({});
                                 }
-                            }/>{item.text}
-                        </div>);
-            })}          
-        </div>
-      );
+                            }/>
+                            {item.text}
+                        </div>
+                    );
+                })}          
+            </div>
+        );
     }
 }; 
 

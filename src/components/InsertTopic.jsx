@@ -6,14 +6,12 @@ import { validationInputForBorder as validationInput } from '../common/common';
 
 import '../css/wrong.css';
 import '../css/input.css';
-//import Input from '../components/Input';
 
 class InsertTopic extends React.Component { 
 
 	constructor(props){
 		super(props);		
         this.saveInsert = this.saveInsert.bind(this);
-
         this.state = {isWrongInput: false};
 
         if (this.props.topic != null) {
@@ -54,27 +52,26 @@ class InsertTopic extends React.Component {
     }
 
   render() { 
-    
 	  return (
         <div>
-            <Link to="/topics" className="title-link">Topics</Link>
+            <Link to="/topics" className="title-link">К темам</Link>
             <div className="container insert">            
-                {(() => {if (this.state.isWrongInput) return <div className="invalid">Invalid input</div>;})()}
+                {(() => {if (this.state.isWrongInput) return <div className="invalid">Некорректный ввод</div>;})()}
                 <form id="insert-topic" name="insert-topic">         
                         <label>
-                            insert title
+                            Введите заголовок
                             <div className="input-border">
                                 <input id="insert-title" name="title" placeholder="write title.." type="text" defaultValue={this.title} pattern="\w{1,120}" required/>
                             </div>
                         </label>
                         <label>
-                            insert text
+                            Введите текст
                             <div className="input-border">
                                 <textarea id="insert-text" name="text" placeholder="write text.." defaultValue={this.text} required/>
                             </div>
                         </label>              
                 </form>
-                <input type="submit" value={this.insertUpdate} onClick={this.saveInsert}/>
+                <input type="submit" value="Сохранить" onClick={this.saveInsert}/>
             </div>
         </div>
     );

@@ -22,8 +22,8 @@ class App extends Component {
         this.setAuthState = this.setAuthState.bind(this);
 
         this.items = {
-            auth: [{ to: "/profil", value: "Profil" }, { to: "/insert-topic", value: "Insert topic" }, { to: "/logout", value: "Logout" }],
-            noAuth: [{ to: "/register", value: "Register" }, { to: "/login-user", value: "Login" }]
+            auth: [{ to: "/profil", value: "Профиль" }, { to: "/insert-topic", value: "Создать топик" }, { to: "/logout", value: "Выйти" }],
+            noAuth: [{ to: "/register", value: "Регистрация" }, { to: "/login-user", value: "Войти" }]
         };
 
         this.additionItem = this.items.noAuth;
@@ -33,7 +33,7 @@ class App extends Component {
         fetch("/isAuthenticated").then((res) => res.json())
         .then((res) => {if (res.isAuth) This.setAdditionItem(This.items.auth);});
 
-        this.hendlers = {resize: () => {console.log("1")}};
+        this.hendlers = {resize: () => {}};
     }
 
     isAuth(isAuthReactComp, noAuthReactComp) {
@@ -75,13 +75,13 @@ class App extends Component {
     }
 
     render() {
-        var navigations = [{ to: "/", value: "About" }, { to: "/topics", value: "Topics" },].concat(this.additionItem);
+        var navigations = [{ to: "/", value: "Главная" }, { to: "/topics", value: "Топики" },].concat(this.additionItem);
         return ( 
                 <div>
                      <header>
                          <div id="header" className="header" >
-                            <h1> My Website </h1>  
-                            <p> A website created by me. </p>  
+                            <h1> My Topics </h1> 
+                            <p> Add your topic </p>
                             <div className="links">
                                 {navigations.map((elem, index) =>
                                     <li key={elem.value + "-" + index}><Link className="title-link" to={elem.to}>{elem.value}</Link></li>
@@ -96,7 +96,7 @@ class App extends Component {
                             <Route path="/Home" component={Home}></Route>  
                             <Route exact path="/topics" render={(() => <Topics onResize={this.hendlers.resize} key="0"/>).bind(this)}></Route>      
                             <Route path="/topics/:topic" component={BigTopic}></Route> 
-                            <Route exact path="/insert-topic" render={(() => this.isAuth(<InsertTopic/>, <div>no auth</div>)).bind(this)}></Route>      
+                            <Route exact path="/insert-topic" render={(() => this.isAuth(<InsertTopic/>, <div>Вы не авторизованы</div>)).bind(this)}></Route>      
                             <Route exact path="/profil" render={(() => <Profil/>).bind(this)}></Route>
                             <Route exact path="/profil/:user" component={Profil}></Route>
                             <Route exact path="/register" component={Register}></Route> 
@@ -110,7 +110,7 @@ class App extends Component {
                                 }).bind(this)}>
                             </Route>                        
                             <Route exact path="/myTopics" render={
-                                (() => this.isAuth(<Topics myTopics={true} onResize={this.hendlers.resize} key="2"/>, <div>no auth</div>)).bind(this)}>
+                                (() => this.isAuth(<Topics myTopics={true} onResize={this.hendlers.resize} key="2"/>, <div>Вы не авторизованы</div>)).bind(this)}>
                             </Route>   
                             <Route exact path="/createrTopics/:createrId" render={
                                 ((props) => <Topics {...props} onResize={this.hendlers.resize} key="3"/>).bind(this)}>

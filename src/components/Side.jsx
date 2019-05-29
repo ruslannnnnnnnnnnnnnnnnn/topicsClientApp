@@ -6,11 +6,10 @@ class Side extends React.Component {
 
 	constructor(props){
 		super(props);
-		this.open = "170px";
+		this.open = "190px";
 		this.close = "30px";		
 		this.state = {isOpen: false, style: {width: this.open}, class: "left", heightStyle: ""};
 		this.openClose = this.openClose.bind(this);		
-
 		this.resize = this.resize.bind(this);
 		this.props.hendlers.resize = this.resize;
 	}
@@ -30,24 +29,24 @@ class Side extends React.Component {
 	}
 
   	render() { 	
-				return(
-					<div className="sidenavig-top" style={Object.assign({height: this.state.heightStyle}, this.state.style)} onClick={this.openClose}>
-						<div id="sidenavig" style={this.state.style} className="sidenavig">
-							{this.props.items.map(function(elem, index){
-								return (
-									<li key={elem.value + "-" + index}>
-											<Link className="navig-link" to={elem.to}>{elem.value}</Link>
-									</li>);
-									})
-							}
-							<div className={"arrow " + this.state.class}>
-								<div className="bar3"></div>
-								<div className="bar1"></div>
-							</div>
-						</div>
+		return(
+			<div className="sidenavig-top" style={Object.assign({height: this.state.heightStyle}, this.state.style)} onClick={this.openClose}>
+				<div id="sidenavig" style={this.state.style} className="sidenavig">
+					{this.props.items.map(function(elem, index){
+						return (
+							<li key={elem.value + "-" + index}>
+								<Link className="navig-link" to={elem.to}>{elem.value}</Link>
+							</li>
+						);
+					})}
+					<div className={"arrow " + this.state.class}>
+						<div className="bar3"></div>
+						<div className="bar1"></div>
 					</div>
-				);
-	  }
+				</div>
+			</div>
+		);
+	}
 
 	resize(defult){
 		if (defult) {

@@ -1,7 +1,6 @@
 import React from 'react';
 import '../css/register.css';
 import { Link } from 'react-router-dom';
-//import validationInput from '../common/common';
 import { validationInputForBorder as validationInput } from '../common/common';
 
 import '../css/wrong.css';
@@ -24,7 +23,6 @@ class Login extends React.Component {
         this.setState({isWrongInput: false});
 
         var formData = new FormData(document.forms["insert"]);
-
         var This = this;
 
         fetch("/login", {
@@ -45,34 +43,30 @@ class Login extends React.Component {
     }
 
     render() { 	
-	  return (
-        <div className="container">
-            {(() => {if (this.state.isWrongInput) return <div className="invalid">{this.state.wrongText}</div>;})()}
-            <form id="insert" name="insert">
-            
-                <h1>Login</h1>
-                <hr/>
+	    return (
+            <div className="container">
+                {(() => {if (this.state.isWrongInput) return <div className="invalid">{this.state.wrongText}</div>;})()}
+                <form id="insert" name="insert">
+                    <label>
+                        <b>Почта</b>
+                        <div className="input-border">
+                            <input type="text" id="email" placeholder="Enter Email" name="email" required/>
+                        </div>
+                    </label>
 
-                <label>
-                    <b>Email</b>
-                    <div className="input-border">
-                        <input type="text" id="email" placeholder="Enter Email" name="email" required/>
-                    </div>
-                </label>
+                    <label>
+                        <b>Пароль</b>
+                        <div className="input-border">
+                            <input type="password" id="password" placeholder="Enter Password" name="password" required/>
+                        </div>
+                    </label>
+                    <hr/>     
+                </form>
 
-                <label>
-                    <b>Password</b>
-                    <div className="input-border">
-                        <input type="password" id="password" placeholder="Enter Password" name="password" required/>
-                    </div>
-                </label>
-                <hr/>     
-            </form>
-
-            <input type="submit" className="registerbtn" value="Login" onClick={this.saveInsert}/>     
-        </div>
-      );
-  }
+                <input type="submit" className="registerbtn" value="Войти" onClick={this.saveInsert}/>     
+            </div>
+        );
+    }
 }; 
 
 export default Login;

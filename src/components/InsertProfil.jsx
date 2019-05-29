@@ -39,22 +39,22 @@ class InsertProfil extends React.Component {
             <form id="insert-profile" name="insert-profile">           
                 <div className="container">
                     <label>
-                        about you
+                        Обо мне
                         <div className="input-border"><textarea id="aboutMe" name="aboutMe" defaultValue={this.props.user.aboutMe}/></div>
                     </label>
                     <label>
-                        name
+                        Имя
                         <div className="input-border"><input type="text" id="name" name="name" value={this.props.user.name}/></div>
                     </label>
                     <label>
-                        age
+                        Возраст
                         <div className="input-border"><input type="text" id="age" name="age" value={this.props.user.age}/></div>  
                     </label>  
                     <div className="images">
                         <img id="man" onClick={(() => this.onClickImage(this.image, this.image = "man")).bind(this)} src={man}/>
                         <img id="woman" onClick={(() => this.onClickImage(this.image, this.image = "woman")).bind(this)} src={woman}/>
                     </div>  
-                    <input type="submit" value="save" onClick={this.saveUpdate}/>
+                    <input type="submit" value="Сохранить" onClick={this.saveUpdate}/>
                 </div>
             </form>
         );

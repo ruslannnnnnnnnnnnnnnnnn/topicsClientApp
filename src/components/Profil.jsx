@@ -100,15 +100,15 @@ class Profil extends React.Component {
                                 }).bind(this)()}             
                                 <div className="about-me">
                                     <div className="about">
-                                        <h3>about me</h3>
+                                        <h3>Обо мне</h3>
                                         <div className="about-text">{this.state.aboutMe}</div>
                                     </div>
                                     <div className="about">
-                                        <h3>name</h3>
+                                        <h3>Имя</h3>
                                         <div className="about-text">{this.state.name}</div>
                                     </div>
                                     <div className="about">
-                                        <h3>age</h3>
+                                        <h3>Возраст</h3>
                                         <div className="about-text">{this.state.age}</div>       
                                     </div>  
                                     <div className="about"></div>                             

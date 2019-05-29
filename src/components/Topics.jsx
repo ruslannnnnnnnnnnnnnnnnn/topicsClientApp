@@ -17,9 +17,11 @@ class Topics extends React.Component {
     this.callBackSearch = this.callBackSearch.bind(this);
     this.checkboxs = [];
     this.back = {search: () => {}, setCheckboxs: ((boxs) => this.checkboxs = boxs).bind(this)};
-
     this.url = "/find";
-    if (this.props.myTopics) this.url = "/findMyTopics";
+    
+    if (this.props.myTopics) {
+      this.url = "/findMyTopics";
+    }
     else if ( this.props.match != null && this.props.match.params != null && this.props.match.params.createrId != null) {
       this.url = "/findCreaterTopics";
       this.createrId = this.props.match.params.createrId.toString();
@@ -28,11 +30,10 @@ class Topics extends React.Component {
 
   topics(){
     var thisTopic = this;
-    this.back.search(this.setOptionSearch(this.state.topics.length), 
-                    (topics) => {
-                      thisTopic.setState({topics: thisTopic.state.topics.concat(topics)})
-                      thisTopic.props.onResize();
-                    });
+    this.back.search(this.setOptionSearch(this.state.topics.length), (topics) => {
+      thisTopic.setState({topics: thisTopic.state.topics.concat(topics)})
+      thisTopic.props.onResize();
+    });
   }
 
   scroll() {
@@ -45,7 +46,6 @@ class Topics extends React.Component {
   callBackSearch(topics, toks) {
     this.setState({topics: topics});
   }
-
 
   setOptionSearch(from, to) {
     if (from == null) from = 0;
@@ -66,15 +66,14 @@ class Topics extends React.Component {
   render() { 	
 	  return (
       <div>
-        <Link to="/insert-topic" className="insert-link">Insert topic</Link>
+        <Link to="/insert-topic" className="insert-link">Создать новую тему</Link>
         <Search callBack={this.callBackSearch} setOption={this.setOptionSearch} url={this.url} back={this.back} checkboxs={this.checkboxs}/>   
         {
           this.state.topics.map(function(topic, index){
             return <Topic key={index + "-topic"} title={topic.title} text={topic.text} _id={topic._id} creater={topic.createrLogin}/>
           })
         }
-        <Topic title="Title1" text="text ...fdgfg" topic="topic1"/>
-        <Topic title="Title" text="text ...fdgfg" topic="topic"/>
+        <Topic title="Title" text="text ..." topic="topic"/>
       </div>
     );
   }
@@ -84,7 +83,6 @@ class Topics extends React.Component {
     window.addEventListener("scroll", this.scroll);
     fetch("/isAuthenticated").then((res) => res.json())
     .then(((res) => {
-      console.log(res);
       if (!res.isAuth || this.props.myTopics || this.createrId != null) return;
       this.back.setCheckboxs([
         {
@@ -98,7 +96,6 @@ class Topics extends React.Component {
 
   componentWillUnmount() {
     this.props.onResize(true);
-    console.log("1");
     window.removeEventListener("scroll", this.scroll);
   }
 }; 

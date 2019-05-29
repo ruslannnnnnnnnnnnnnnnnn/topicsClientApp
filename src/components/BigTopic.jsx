@@ -6,7 +6,7 @@ import ModalWindow from '../components/ModalWindow';
 
 class BigTopic extends React.Component { 
 
-    constructor(props){
+    constructor(props) {
         super(props);		
         this.state = {
             topic: {title: "", text: "", _id: this.props.match.params.topic.toString(), createrLogin: ""},
@@ -21,23 +21,18 @@ class BigTopic extends React.Component {
         this.topic = this.topic.bind(this);
     }
 
-    topic(){
-        var thisTopic = this;
-        
+    topic() {
+        var thisTopic = this;   
         var formDate =  new FormData();
-        formDate.append("_id", this.props.match.params.topic.toString());
 
+        formDate.append("_id", this.props.match.params.topic.toString());
         this.setState({_id: "", isLoad: true, isUpdate: false});
         
         fetch("/find", {
             method: "POST",
             body: formDate
-        }).then(function(res){
-          return res.json();
-        }).then(function(topic){
-          thisTopic.setState({topic: topic, isLoad: false});
-          console.log(topic);
-        });
+        }).then((res) => res.json())
+        .then((topic) => thisTopic.setState({topic: topic, isLoad: false}));
     }
 
     onUpdate() {
@@ -49,11 +44,10 @@ class BigTopic extends React.Component {
     }
 
     onYesClickModal() {
-        var thisTopic = this;
-        
+        var thisTopic = this;   
         var formDate =  new FormData();
-        formDate.append("_id", this.props.match.params.topic.toString());
 
+        formDate.append("_id", this.props.match.params.topic.toString());
         this.setState({isLoad: true, isUpdate: false});
 
         fetch("/removeTopic", {
@@ -69,15 +63,13 @@ class BigTopic extends React.Component {
         var text = this.state.topic.text;
         
         if (this.state.isLoad) {
-            return (
-                <div>loading...</div>
-            );
+            return (<div>loading...</div>);
         } 
 
         if (!this.state.isUpdate) {
             return (
                 <div>
-                    <Link to="/topics" className="title-link">Topics</Link>
+                    <Link to="/topics" className="title-link">К темам</Link>
                     <div className="big-topic">
                         <div className="create-topic">
                             creater:

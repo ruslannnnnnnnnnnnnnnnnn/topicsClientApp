@@ -11,18 +11,18 @@ class ModalWindow extends React.Component {
         <div>
             <a href="#x" className="overlay" id="modal-winodw"></a>
             <div className="popup">
-                Remove topic? 
+                Вы уверены? 
                 <a className="close" title="Закрыть" href="#close"></a>
 
-                <input type="submit" value="yes" onClick={function() { 
+                <input type="submit" value="Да" onClick={function() { 
                         This.props.onYesClickModal(); 
                         window.location.href = "#x";
                     }}/>
-                <input type="submit" value="no" onClick={() => window.location.href = "#x"}/>
+                <input type="submit" value="Нет" onClick={() => window.location.href = "#x"}/>
             </div>
         </div>
       );
   }
-}; 
+};
 
 export default ModalWindow;

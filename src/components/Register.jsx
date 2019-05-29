@@ -1,7 +1,6 @@
 import React from 'react';
 import '../css/register.css';
 import { Link } from 'react-router-dom';
-//import validationInput from '../common/common';
 import { validationInputForBorder as validationInput } from '../common/common';
 
 import '../css/wrong.css';
@@ -32,7 +31,6 @@ class Register extends React.Component {
         this.setState({isWrongInput: false});
 
         var formData = new FormData(document.forms["insert"]);
-
         var This = this;
 
         fetch("/insertUser", {
@@ -41,17 +39,15 @@ class Register extends React.Component {
         }).then((res) => res.json())
         .then(function(res){
             if (res.isRegister) {
-                window.location.href = "/topics";
+                window.location.href = "/topics";           
             } else if (res.isEmail) {
-
+                
                 document.getElementById("email").classList.add("wrong-input");
                 This.setState({isWrongInput: true, wrongText: "email use"});
 
             } else if (res.isLogin) {
-
                 document.getElementById("login").classList.add("wrong-input");
                 This.setState({isWrongInput: true, wrongText: "login use"});
-
             }
         });
     }
@@ -62,33 +58,33 @@ class Register extends React.Component {
             {(() => {if (this.state.isWrongInput) return <div className="invalid">{this.state.wrongText}</div>;})()}
             <form id="insert" name="insert">
             
-                <h1>Register</h1>
-                <p>Please fill in this form to create an account.</p>
+                <h1>Регистрация</h1>
+                <p>Пожалуйста заполните форму для регистрации.</p>
                 <hr/>
 
                 <label>
-                    <b>Email</b>
+                    <b>Почта</b>
                     <div className="input-border">
                         <input type="text" id="email" placeholder="Enter Email" name="email" required/>
                     </div>
                 </label>
 
                 <label>
-                    <b>Login</b>
+                    <b>Логин</b>
                     <div className="input-border">
                         <input type="text" id="login" placeholder="Enter Login" name="login" required/>
                     </div>
                 </label>
 
                 <label>
-                    <b>Password</b>
+                    <b>Пароль</b>
                     <div className="input-border">
                         <input type="password" id="password" placeholder="Enter Password" name="password" required/>
                     </div>
                 </label>
 
                 <label>
-                    <b>Repeat Password</b>
+                    <b>Повторите пароль</b>
                     <div className="input-border">
                         <input type="password" id="password-repeat" placeholder="Repeat Password" name="psw-repeat" required/>
                     </div>
@@ -96,7 +92,7 @@ class Register extends React.Component {
                 
             </form>
 
-            <input type="submit" className="registerbtn" value="Register" onClick={this.saveInsert}/>    
+            <input type="submit" className="registerbtn" value="Регистрация" onClick={this.saveInsert}/>    
         </div>
       );
   }
