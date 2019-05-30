@@ -37,7 +37,7 @@ class Login extends React.Component {
                     This.props.onAuth();
                 }
             } else if (res.wrong) {
-                This.setState({isWrongInput: true, wrongText: "error input"});
+                This.setState({isWrongInput: true, wrongText: "Неверно"});
             } 
         });
     }

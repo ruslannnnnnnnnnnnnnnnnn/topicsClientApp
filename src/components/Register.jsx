@@ -16,7 +16,7 @@ class Register extends React.Component {
 
     saveInsert(){
         if (!validationInput("wrong-input")) {
-            this.setState({isWrongInput: true, wrongText: "wrong input"});
+            this.setState({isWrongInput: true, wrongText: "Некорректный ввод"});
             return;
         }
         
@@ -24,7 +24,7 @@ class Register extends React.Component {
 
         if (document.getElementById("password").value != repPassword.value){
             repPassword.classList.add("wrong-input");
-            this.setState({isWrongInput: true, wrongText: "wrong repeat"});  
+            this.setState({isWrongInput: true, wrongText: "Пароли не совпадают"});  
             return;
         }
         
@@ -43,11 +43,11 @@ class Register extends React.Component {
             } else if (res.isEmail) {
                 
                 document.getElementById("email").classList.add("wrong-input");
-                This.setState({isWrongInput: true, wrongText: "email use"});
+                This.setState({isWrongInput: true, wrongText: "Почта уже используется"});
 
             } else if (res.isLogin) {
                 document.getElementById("login").classList.add("wrong-input");
-                This.setState({isWrongInput: true, wrongText: "login use"});
+                This.setState({isWrongInput: true, wrongText: "Логин уже используется"});
             }
         });
     }
