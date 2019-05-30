@@ -109,7 +109,7 @@ class Profil extends React.Component {
                                     if (this.state.isCreater) 
                                         return <Link to="/myTopics" className="title-link">Мои топики</Link>;
                                     else
-                                        return <Link to={"/createrTopics/" + this.state._id} className="title-link">Его топики</Link>;
+                                        return <Link to={"/createrTopics/" + this.state._id} className="title-link">Топики</Link>;
                                 }).bind(this)()}             
                                 <div className="about-me">
                                     <div className="about">

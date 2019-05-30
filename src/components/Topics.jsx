@@ -95,7 +95,7 @@ class Topics extends React.Component {
             if (checkbox.checked) topics.url = "/findMyTopics"; 
             else topics.url = "/find";
           }, 
-          text: "my topics", 
+          text: "мои топики", 
           default: this.props.myTopics
         }
       ]);

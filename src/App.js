@@ -85,10 +85,11 @@ class App extends Component {
                             <div className="links">
                                 {navigations.map((elem, index) =>
                                     <li key={elem.value + "-" + index}><Link className="title-link" to={elem.to}>{elem.value}</Link></li>
-                                )}
-                            </div>
+                                )}                       
+                            </div>                        
                         </div>  
                         <Side main="main" header="header" hendlers={this.hendlers} items={navigations}/>  
+                        <img src={logo} className="logo"/>
                     </header>  
                     <div id="main">
                         <Switch>

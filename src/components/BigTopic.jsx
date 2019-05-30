@@ -13,25 +13,26 @@ class BigTopic extends React.Component {
             isLoad: true,
             isUpdate: false,
             isRemove: false,
-            isAuth: false
+            isCreater: false
         };
 
         this.onUpdate = this.onUpdate.bind(this);
         this.onRemove = this.onRemove.bind(this);
         this.onYesClickModal = this.onYesClickModal.bind(this);   
         this.topic = this.topic.bind(this);
+
+        this.formDate =  new FormData();
+        this.formDate.append("_id", this.props.match.params.topic.toString());
     }
 
     topic() {
         var thisTopic = this;   
-        var formDate =  new FormData();
-
-        formDate.append("_id", this.props.match.params.topic.toString());
+ 
         this.setState({_id: "", isLoad: true, isUpdate: false});
         
         fetch("/find", {
             method: "POST",
-            body: formDate
+            body: this.formDate
         }).then((res) => res.json())
         .then((topic) => thisTopic.setState({topic: topic, isLoad: false}));
     }
@@ -46,14 +47,12 @@ class BigTopic extends React.Component {
 
     onYesClickModal() {
         var thisTopic = this;   
-        var formDate =  new FormData();
 
-        formDate.append("_id", this.props.match.params.topic.toString());
         this.setState({isLoad: true, isUpdate: false});
 
         fetch("/removeTopic", {
             method: "POST",
-            body: formDate
+            body: this.formDate
         }).then(function(){
             thisTopic.setState({isLoad: false});
             window.location.href = "/topics";
@@ -67,7 +66,7 @@ class BigTopic extends React.Component {
             return (<div>loading...</div>);
         } 
 
-        if (this.state.isAuth) {
+        if (this.state.isCreater) {
             var isAuthButons = (                    
                 <div className="buttons-topic">
                     <input type="submit" value="обновить топик" onClick={this.onUpdate}/>
@@ -106,8 +105,13 @@ class BigTopic extends React.Component {
 
     componentDidMount() {
         this.topic();
-        fetch("/isAuthenticated").then((res) => res.json())
-        .then(((res) => this.setState({isAuth: res.isAuth})).bind(this));
+
+        fetch("/isCreaterTopic", {
+            method: "POST", 
+            body: this.formDate
+        })
+        .then((res) => res.json())
+        .then(((res) => this.setState({isCreater: res.isCreater})).bind(this));
     }
 }; 
 
