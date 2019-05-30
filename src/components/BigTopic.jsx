@@ -67,7 +67,7 @@ class BigTopic extends React.Component {
             return (<div>loading...</div>);
         } 
 
-        if (this.isAuth) {
+        if (this.state.isAuth) {
             var isAuthButons = (                    
                 <div className="buttons-topic">
                     <input type="submit" value="обновить топик" onClick={this.onUpdate}/>

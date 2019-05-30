@@ -107,9 +107,9 @@ class Profil extends React.Component {
                                 </div>
                                 {(() => { 
                                     if (this.state.isCreater) 
-                                        return <Link to="/myTopics" className="title-link">my topics</Link>;
+                                        return <Link to="/myTopics" className="title-link">Мои топики</Link>;
                                     else
-                                        return <Link to={"/createrTopics/" + this.state._id} className="title-link">topics</Link>;
+                                        return <Link to={"/createrTopics/" + this.state._id} className="title-link">Его топики</Link>;
                                 }).bind(this)()}             
                                 <div className="about-me">
                                     <div className="about">
@@ -128,7 +128,7 @@ class Profil extends React.Component {
                                 </div>
                                 {(() => { 
                                     if (this.state.isCreater) 
-                                        return <input type="submit" value="update" onClick={(() => {this.setState({isUpdate: true})}).bind(this)}/> 
+                                        return <input className="input-profil" type="submit" value="Обновить" onClick={(() => {this.setState({isUpdate: true})}).bind(this)}/> 
                                 }).bind(this)()}                
                             </div>
                         );
