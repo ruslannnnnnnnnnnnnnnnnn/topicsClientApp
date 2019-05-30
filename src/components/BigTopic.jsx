@@ -21,7 +21,7 @@ class BigTopic extends React.Component {
         this.onYesClickModal = this.onYesClickModal.bind(this);   
         this.topic = this.topic.bind(this);
 
-        this.formDate =  new FormData();
+        this.formDate = new FormData();
         this.formDate.append("_id", this.props.match.params.topic.toString());
     }
 
