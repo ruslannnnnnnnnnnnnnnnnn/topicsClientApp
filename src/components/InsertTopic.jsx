@@ -61,7 +61,7 @@ class InsertTopic extends React.Component {
                         <label>
                             Введите заголовок
                             <div className="input-border">
-                                <input id="insert-title" name="title" placeholder="write title.." type="text" defaultValue={this.title} pattern="\w{1,120}" required/>
+                                <input id="insert-title" name="title" placeholder="write title.." type="text" defaultValue={this.title} pattern=".{1,70}" required/>
                             </div>
                         </label>
                         <label>

@@ -18,7 +18,8 @@ class Topics extends React.Component {
     this.checkboxs = [];
     this.back = {search: () => {}, setCheckboxs: ((boxs) => this.checkboxs = boxs).bind(this)};
     this.url = "/find";
-    
+    this.isLoading = false;
+
     if (this.props.myTopics) {
       this.url = "/findMyTopics";
     }
@@ -30,9 +31,14 @@ class Topics extends React.Component {
 
   topics(){
     var thisTopic = this;
+
+    if (thisTopic.isLoading) return;
+    thisTopic.isLoading = true;
+
     this.back.search(this.setOptionSearch(this.state.topics.length), (topics) => {
       thisTopic.setState({topics: thisTopic.state.topics.concat(topics)})
       thisTopic.props.onResize();
+      thisTopic.isLoading = false;
     });
   }
 
@@ -73,7 +79,6 @@ class Topics extends React.Component {
             return <Topic key={index + "-topic"} title={topic.title} text={topic.text} _id={topic._id} creater={topic.createrLogin}/>
           })
         }
-        <Topic title="Title" text="text ..." topic="topic"/>
       </div>
     );
   }
@@ -86,7 +91,10 @@ class Topics extends React.Component {
       if (!res.isAuth || this.props.myTopics || this.createrId != null) return;
       this.back.setCheckboxs([
         {
-          onChange: (checkbox, topics) => {if (checkbox.checked) topics.url = "/findMyTopics"; else topics.url = "/find";}, 
+          onChange: (checkbox, topics) => {
+            if (checkbox.checked) topics.url = "/findMyTopics"; 
+            else topics.url = "/find";
+          }, 
           text: "my topics", 
           default: this.props.myTopics
         }

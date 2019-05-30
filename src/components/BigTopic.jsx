@@ -12,7 +12,8 @@ class BigTopic extends React.Component {
             topic: {title: "", text: "", _id: this.props.match.params.topic.toString(), createrLogin: ""},
             isLoad: true,
             isUpdate: false,
-            isRemove: false
+            isRemove: false,
+            isAuth: false
         };
 
         this.onUpdate = this.onUpdate.bind(this);
@@ -66,6 +67,15 @@ class BigTopic extends React.Component {
             return (<div>loading...</div>);
         } 
 
+        if (this.isAuth) {
+            var isAuthButons = (                    
+                <div className="buttons-topic">
+                    <input type="submit" value="обновить топик" onClick={this.onUpdate}/>
+                    <input type="submit" value="удалить топик" onClick={this.onRemove}/>
+                </div>
+            );
+        }
+
         if (!this.state.isUpdate) {
             return (
                 <div>
@@ -80,11 +90,7 @@ class BigTopic extends React.Component {
                             <div className={this.state.class}>{text}</div>
                         </div>                     
                     </div>
-                    <div className="buttons-topic">
-                        <input type="submit" value="update topic" onClick={this.onUpdate}/>
-                        <input type="submit" value="remove topic" onClick={this.onRemove}/>
-                    </div>
-
+                    {isAuthButons}
                     <ModalWindow onYesClickModal={this.onYesClickModal}/>
                 </div>
             );
@@ -92,7 +98,7 @@ class BigTopic extends React.Component {
             return (
                 <div>
                     <InsertTopic topic={this.state.topic} onInsertUpdate={this.topic}/>
-                    <input type="submit" value="to topic" onClick={this.onUpdate}/>
+                    <input type="submit" value="К топику" onClick={this.onUpdate}/>
                 </div>
             );
         }
@@ -100,6 +106,8 @@ class BigTopic extends React.Component {
 
     componentDidMount() {
         this.topic();
+        fetch("/isAuthenticated").then((res) => res.json())
+        .then(((res) => this.setState({isAuth: res.isAuth})).bind(this));
     }
 }; 
 

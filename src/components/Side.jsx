@@ -6,7 +6,7 @@ class Side extends React.Component {
 
 	constructor(props){
 		super(props);
-		this.open = "190px";
+		this.open = "185px";
 		this.close = "30px";		
 		this.state = {isOpen: false, style: {width: this.open}, class: "left", heightStyle: ""};
 		this.openClose = this.openClose.bind(this);		

@@ -20,7 +20,8 @@ class Profil extends React.Component {
             _id: "",
             isUpdate: false,
             isCreater: false,
-            isUndefined: false
+            isUndefined: false,
+            isLoading: true
         };    
         this.setUser = this.setUser.bind(this);
 
@@ -38,6 +39,8 @@ class Profil extends React.Component {
             formData.append("login", this.user);
         }
 
+        this.setState({isLoading: true});
+
         fetch("/isCreaterUser", { method: "POST", body: formData})
         .then((res) => res.json())
         .then(function(res){
@@ -47,15 +50,23 @@ class Profil extends React.Component {
                 .then((res) => res.json())
                 .then(function(res) {
                     if (res == null) 
-                        This.setState({isUndefined: true});
+                        This.setState({isUndefined: true, isLoading: false});
                     else {                      
                         if (res.image == "woman") image = woman;
-                        This.setState({login: res.login, age: res.age, name: res.name, aboutMe: res.aboutMe, _id: res._id, image: image});
+                        This.setState({
+                            login: res.login, 
+                            age: res.age, 
+                            name: res.name, 
+                            aboutMe: res.aboutMe, 
+                            _id: res._id, 
+                            image: image,
+                            isLoading: false
+                        });
                     }
                 }); 
             }
             else if (res.user == null)
-                This.setState({isUndefined: true});
+                This.setState({isUndefined: true, isLoading: false});
             else {
                 if (res.user.image == "woman") image = woman;
                 This.setState({
@@ -65,7 +76,8 @@ class Profil extends React.Component {
                     aboutMe: res.user.aboutMe, 
                     _id: res.user._id,
                     isCreater: res.isCreater,
-                    image: image
+                    image: image,
+                    isLoading: false
                 });
             }
         });
@@ -73,6 +85,7 @@ class Profil extends React.Component {
 
     render() { 	
         if (this.state.isUndefined) return (<div>undifined profil</div>);
+        if (this.state.isLoading) return (<div>loading...</div>);
         return (
             <div>
                 {(() => {
