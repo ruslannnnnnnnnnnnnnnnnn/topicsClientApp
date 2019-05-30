@@ -93,7 +93,7 @@ class Profil extends React.Component {
                          return ( 
                             <div>
                                 <InsertProfil user={this.state} onInsertUpdate={this.setUser}/>
-                                <input type="submit" value="to profil" onClick={(() => {this.setState({isUpdate: false})}).bind(this)}/>
+                                <input type="submit" value="к профилю" onClick={(() => {this.setState({isUpdate: false})}).bind(this)}/>
                             </div>
                          );
                     else

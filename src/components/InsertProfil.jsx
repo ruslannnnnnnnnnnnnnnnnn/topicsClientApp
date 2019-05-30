@@ -44,11 +44,11 @@ class InsertProfil extends React.Component {
                     </label>
                     <label>
                         Имя
-                        <div className="input-border"><input type="text" id="name" name="name" value={this.props.user.name}/></div>
+                        <div className="input-border"><input type="text" id="name" name="name" defaultValue={this.props.user.name}/></div>
                     </label>
                     <label>
                         Возраст
-                        <div className="input-border"><input type="text" id="age" name="age" value={this.props.user.age}/></div>  
+                        <div className="input-border"><input type="text" id="age" name="age" defaultValue={this.props.user.age}/></div>  
                     </label>  
                     <div className="images">
                         <img id="man" onClick={(() => this.onClickImage(this.image, this.image = "man")).bind(this)} src={man}/>
